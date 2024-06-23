@@ -1,0 +1,13 @@
+package com.trainbooking.app.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class SectionRequest {
+    private Long trainId;
+    private String section;
+}
