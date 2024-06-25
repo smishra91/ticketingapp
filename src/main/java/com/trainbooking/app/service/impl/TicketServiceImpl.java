@@ -44,7 +44,7 @@ public class TicketServiceImpl implements TicketService {
             section = "A";
         } else if (train.getAvailableSeatsSectionB() > 0) {
             train.setAvailableSeatsSectionB(train.getAvailableSeatsSectionB() - 1);
-            section = "A";
+            section = "B";
         } else {
             throw new Exception("No seats available in the requested section");
         }
@@ -97,17 +97,13 @@ public class TicketServiceImpl implements TicketService {
 
         Train train = ticket.getTrain();
 
-        if (ticket.getSection().equalsIgnoreCase("A")) {
-            train.setAvailableSeatsSectionA(train.getAvailableSeatsSectionA() + 1);
-        } else if (ticket.getSection().equalsIgnoreCase("B")) {
-            train.setAvailableSeatsSectionB(train.getAvailableSeatsSectionB() + 1);
-        }
-
         // Allocate the new seat
         if (newSection.equalsIgnoreCase("A") && train.getAvailableSeatsSectionA() > 0) {
             train.setAvailableSeatsSectionA(train.getAvailableSeatsSectionA() - 1);
+            train.setAvailableSeatsSectionB(train.getAvailableSeatsSectionB() + 1);
         } else if (newSection.equalsIgnoreCase("B") && train.getAvailableSeatsSectionB() > 0) {
             train.setAvailableSeatsSectionB(train.getAvailableSeatsSectionB() - 1);
+            train.setAvailableSeatsSectionA(train.getAvailableSeatsSectionA() + 1);
         } else {
             throw new Exception("No seats available in the requested section");
         }
